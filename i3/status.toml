@@ -47,3 +47,7 @@ format = "{percentage}% {time}"
 block = "time"
 interval = 60
 format = "%a %d/%m %R"
+
+[[block]]
+block = "bluetooth"
+mac = "5C:EB:68:E4:41:1B"
