@@ -1,0 +1,17 @@
+[icons]
+# font awesome
+TelegramDesktop = ""
+telegram-desktop_telegram-desktop = ""
+Firefox = ""
+Alacritty = ""
+Thunderbird = ""
+# smile emoji
+MyNiceProgram = "😛"
+KeeWeb = ''
+"org.gnome.Nautilus" = ''
+Evince = ''
+
+[aliases]
+TelegramDesktop = "Telegram"
+telegram-desktop_telegram-desktop = "Telegram"
+"org.gnome.Nautilus" = "Nautilus"

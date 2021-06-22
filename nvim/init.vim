@@ -4,10 +4,23 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-rls'
+Plug 'neoclide/coc-css'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'cespare/vim-toml'
+Plug 'jonsmithers/vim-html-template-literals'
+let g:htl_css_templates = 1
+Plug 'alvan/vim-closetag'
+" CLOSE TAG CONFIG {{{
+let g:closetag_filetypes = 'html,xhtml,phtml,javascript,typescript'
+let g:closetag_regions = {
+      \ 'typescript.tsx': 'jsxRegion,tsxRegion,litHtmlRegion',
+      \ 'javascript.jsx': 'jsxRegion,litHtmlRegion',
+      \ 'javascript':     'litHtmlRegion',
+      \ 'typescript':     'litHtmlRegion',
+      \ }
+" }}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'NLKNguyen/papercolor-theme'
