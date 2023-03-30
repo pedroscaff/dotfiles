@@ -1,5 +1,18 @@
 {
   "python.jediEnabled": true,
   "diagnostic.virtualText": true,
-  "coc.preferences.formatOnSaveFiletypes": ["rust"]
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "go", "terraform"],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {}
+    }
+  },
+  "go.goplsOptions": {
+    "env": {
+      "GOFLAGS": "-tags=integration"
+    }
+  }
 }

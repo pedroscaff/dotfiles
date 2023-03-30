@@ -41,8 +41,9 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+set $bemenu_path /home/pedroscaff/bin/bemenu-0.6.14
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec LD_LIBRARY_PATH=$bemenu_path BEMENU_RENDERERS=$bemenu_path bemenu-run
 # start rofi
 bindsym Control+space exec rofi -show drun
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -218,3 +219,4 @@ exec xmodmap $HOME/.i3_key_swap -display :0
 exec_always --no-startup-id exec ~/dev/i3wsr/target/release/i3wsr --config ~/.config/i3/i3wsr.toml
 exec --no-startup-id xautolock -time 5 -locker "$i3exit lock"
 exec_always xflux -l 52.5 -g 13.4
+assign [class="teleport"] 9

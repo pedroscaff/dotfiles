@@ -3,6 +3,7 @@
 TelegramDesktop = ""
 telegram-desktop_telegram-desktop = ""
 Firefox = ""
+Chromium = ""
 Alacritty = ""
 Thunderbird = ""
 # smile emoji
@@ -14,4 +15,6 @@ Evince = ''
 [aliases]
 TelegramDesktop = "Telegram"
 telegram-desktop_telegram-desktop = "Telegram"
+firefox = "Firefox"
+thunderbird = "Thunderbird"
 "org.gnome.Nautilus" = "Nautilus"
