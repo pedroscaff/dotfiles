@@ -8,11 +8,11 @@
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {}
-    }
-  },
-  "go.goplsOptions": {
-    "env": {
-      "GOFLAGS": "-tags=integration"
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
     }
   }
 }

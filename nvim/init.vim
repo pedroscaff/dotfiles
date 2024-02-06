@@ -4,9 +4,6 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-rls'
-Plug 'neoclide/coc-css'
 Plug 'cohama/lexima.vim'      " auto-close parens, brackets, etc.
 " COC CONFIG {{{
 " " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
