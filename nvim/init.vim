@@ -73,7 +73,6 @@ let g:closetag_regions = {
 " }}}
 Plug 'preservim/nerdtree'
 Plug 'chrisbra/csv.vim'
-Plug 'github/copilot.vim'
 " signify {{{
 " let g:signify_sign_add = '▎'
 " let g:signify_sign_delete = '▎'
