@@ -114,6 +114,9 @@ set foldlevelstart=3
 set termguicolors
 autocmd vimenter * ++nested colorscheme gruvbox
 " }}}
+" POWERLINE BUG {{{
+let g:powerline_loaded = 1
+" }}}
 " LIGHTLINE {{{
 let g:lightline = {
 \        'colorscheme': 'one',
@@ -155,14 +158,10 @@ set tags=.git/tags
 
 function! GetGitRemoteUrl()
 	silent !clear
-	" execute "!" . "/home/pedroscaff/dev/git-get-remote-url/target/release/git-get-remote-url" . " " . expand("%:p") line(".") . " | wl-copy"
-	execute "!" . "/home/pedroscaff/dev/git-get-remote-url/target/release/git-get-remote-url" . " " . expand("%:p") line(".") . " --clipboard"
+	execute "!" . "~/dev/git-get-remote-url/target/release/git-get-remote-url" . " " . expand("%:p") line(".") . " | wl-copy"
+	" execute "!" . "~/dev/git-get-remote-url/target/release/git-get-remote-url" . " " . expand("%:p") line(".") . " --clipboard"
 endfunction
 nnoremap YY :call GetGitRemoteUrl() <cr>
 " NERDTREE CONFIG {{{
 nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
-" }}}
-" COPILOT CONFIG {{{
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
 " }}}

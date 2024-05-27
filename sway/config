@@ -34,14 +34,15 @@ font pango:Iosevka 9
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec ~/.cargo/bin/alacritty
+bindsym $mod+Return exec /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start bemenu (a program launcher)
-set $bemenu_path /home/pedroscaff/bin/bemenu-0.6.14
-bindsym $mod+d exec dmenu_path | LD_LIBRARY_PATH=$bemenu_path BEMENU_RENDERERS=$bemenu_path bemenu-run
+#set $bemenu_path /home/pedroscaff/bin/bemenu-0.6.14
+bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"}
 # start rofi
 bindsym Control+space exec rofi -show drun
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -150,8 +151,7 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+9 move container to workspace number 9 bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+Shift+Plus move container to output right
 bindsym $mod+Shift+Minus move container to output left
@@ -194,18 +194,18 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         # status_command i3status
-        # status_command ~/.i3status-rust/target/release/i3status-rs ~/.config/sway/status.toml
-        swaybar_command waybar
+        status_command toolbox run --container dev-container i3status-rs ~/.config/sway/status.toml
+        #swaybar_command waybar
 }
 
 focus_follows_mouse no
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-set $swayexit ~/dev/i3-scripts/swayexit.sh
+# set $swayexit ~/dev/i3-scripts/swayexit.sh
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $swayexit lock, mode "default"
-    bindsym e exec --no-startup-id $swayexit logout, mode "default"
-    bindsym s exec --no-startup-id $swayexit suspend, mode "default"
+    bindsym l exec --no-startup-id $lock-now, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym s exec --no-startup-id $lock-now && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $swayexit hibernate, mode "default"
     bindsym r exec --no-startup-id $swayexit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id $swayexit shutdown, mode "default"
@@ -214,6 +214,16 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+# Lock & Hibernate
+exec swayidle -w \
+  timeout 500 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+  timeout 600 'systemctl suspend' \
+  before-sleep 'exec $lock-now'
+
+set $lock-now swaylock -e -f
+# set $lidclose 'systemctl suspend-then-hibernate'
+# bindswitch --reload --locked lid:on exec $lidclose
 bindsym $mod+Delete mode "$mode_system"
 
 set $mode_idle Swayidle (a) active, (s) stop
@@ -224,13 +234,25 @@ mode "$mode_idle" {
 }
 bindsym $mod+Home mode "$mode_idle"
 
-set $mode_idle Pimedia (p) play, (s) stop
-mode "$mode_pimedia" {
-    bindsym p exec --no-startup-id http GET http://192.168.0.191:8080/mpv/resume, mode "default"
-    bindsym s exec --no-startup-id http GET http://192.168.0.191:8080/mpv/pause, mode "default"
+# set $mode_idle Pimedia (p) play, (s) stop
+# mode "$mode_pimedia" {
+#     bindsym p exec --no-startup-id http GET http://192.168.0.191:8080/mpv/resume, mode "default"
+#     bindsym s exec --no-startup-id http GET http://192.168.0.191:8080/mpv/pause, mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+m mode "$mode_pimedia"
+
+set $asus4k "ASUSTek COMPUTER INC ASUS PA279CV R7LMTF005615"
+set $sonyOffice "Dell Inc. DELL U2415 7MT019732KHU"
+set $mode_monitors MonitorSetup (o) office, (h) home, (l) laptop
+mode "$mode_monitors" {
+    # bindsym h output $asus4k res 3840x2160 pos 0 0 scale 2, output eDP-1 res 1920x1080 pos 3840 0, mode "default"
+    bindsym h output $asus4k res 3840x2160 pos 0 0 scale 2, output eDP-1 disable, mode "default"
+    bindsym o output $sonyOffice res 1920x1080 pos 0 0, output eDP-1 res 1920x1080 pos 0 1080, mode "default"
+    bindsym l output eDP-1 enable pos 0 0 res 1920x1080, mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+m mode "$mode_pimedia"
+bindsym $mod+m mode "$mode_monitors"
 
 input type:keyboard {
   xkb_options 'caps:escape'
@@ -243,16 +265,15 @@ output eDP-1 {
 }
 
 output "Ancor Communications Inc ASUS VN247 F9LMTF078012" {
-  resolution 1920x1080 position 0,2160
+  resolution 1920x1080 position 0,0
 }
 
-output "Vestel Elektronik Sanayi ve Ticaret A. S. 43UHD_LCD_TV 0x00000000" {
-  resolution 4096x2160 position 0,2160
-  scale 2
+output "Dell Inc. DELL U2415 7MT019732KHU" {
+  resolution 1920x1080 position 0,0
 }
 
-output "Iiyama North America PL2791Q 1153992021519" {
-  resolution 2560x1440 position 0,0
+output $asus4k {
+  resolution 3840x2160 position 0,0 scale 2
 }
 
 set $gnome-schema org.gnome.desktop.interface
@@ -262,6 +283,7 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'Yaru'
 }
 
-exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml --remove-duplicates
+exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml
+exec_always --no-startup-id /usr/bin/socat tcp-listen:4566,reuseaddr,fork tcp:192.168.124.230:4566
 
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+# exec "systemctl --user import-environment; systemctl --user start sway-session.target"

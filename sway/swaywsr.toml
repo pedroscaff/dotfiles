@@ -2,9 +2,11 @@
 # font awesome
 TelegramDesktop = ""
 telegram-desktop_telegram-desktop = ""
+Telegram = ""
 Firefox = ""
 Chromium = ""
 Alacritty = ""
+HostTerminal = ""
 Thunderbird = ""
 # smile emoji
 MyNiceProgram = "😛"
@@ -14,7 +16,13 @@ Evince = ''
 
 [aliases]
 TelegramDesktop = "Telegram"
+"org.telegram.desktop" = "Telegram"
 telegram-desktop_telegram-desktop = "Telegram"
 firefox = "Firefox"
 thunderbird = "Thunderbird"
 "org.gnome.Nautilus" = "Nautilus"
+chrome-aicfnmoekkcocaklikapnhacomcehkae-Default = "Slack"
+gnome-terminal-server = "HostTerminal"
+
+[options]
+remove-duplicates = true
