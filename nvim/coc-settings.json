@@ -13,6 +13,7 @@
       "command": "gopls",
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
-    }
+    },
+    "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
   }
 }

@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-editors/vim-elixir'
 Plug 'cohama/lexima.vim'      " auto-close parens, brackets, etc.
 " COC CONFIG {{{
 " " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable

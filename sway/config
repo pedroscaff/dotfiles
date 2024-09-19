@@ -51,7 +51,7 @@ bindsym Control+space exec rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # play video with link in clipboard with mpv
-bindsym $mod+p exec mpv $(xclip -selection clipboard -o)
+bindsym $mod+p exec mpv $(wl-paste)
 
 # screenshot
 bindsym Control+Print exec grim -i
@@ -168,8 +168,7 @@ mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
+        # Pressing right will grow the window’s width. Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
@@ -194,7 +193,8 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         # status_command i3status
-        status_command toolbox run --container dev-container i3status-rs ~/.config/sway/status.toml
+        # status_command toolbox run --container dev-container i3status-rs ~/.config/sway/status.toml
+        status_command i3status-rs ~/.config/sway/status.toml
         #swaybar_command waybar
 }
 
@@ -260,9 +260,9 @@ input type:keyboard {
   repeat_delay 400
 }
 
-output eDP-1 {
-  resolution 1920x1080 position 0,0
-}
+# output eDP-1 {
+#   resolution 1920x1080 position 0,0
+# }
 
 output "Ancor Communications Inc ASUS VN247 F9LMTF078012" {
   resolution 1920x1080 position 0,0
@@ -284,6 +284,6 @@ exec_always {
 }
 
 exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml
-exec_always --no-startup-id /usr/bin/socat tcp-listen:4566,reuseaddr,fork tcp:192.168.124.230:4566
+exec_always --no-startup-id /usr/bin/kanshi
 
-# exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
