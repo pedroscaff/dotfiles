@@ -44,11 +44,13 @@ function! ShowDocumentation()
 endfunction
 
 function! JumpToDefinition()
-  call CocActionAsync('jumpDefinition', 'tabe')
+  call CocActionAsync('jumpDefinition', 'vsp')
 endfunction
 
 " Use K to show documentation in preview window.
 nnoremap <C-K> :call JumpToDefinition()<CR>
+
+autocmd FileType elixir let b:coc_root_patterns = ['mix.exs']
 
 " }}}
 Plug 'cespare/vim-toml'
@@ -138,6 +140,8 @@ endfunction
 cnoreabbrev f Files
 cnoreabbrev Q q
 cnoreabbrev n e %:h/
+nnoremap <C-p> :Files<CR>
+nnoremap <C-u> :History<CR>
 " }}}
 " FZF HIDE STATUS LINE {{{
 autocmd! FileType fzf
@@ -148,14 +152,6 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 autocmd BufNewFile,BufRead *.launch set syntax=xml
 autocmd BufNewFile,BufRead *.tf set syntax=tf
 " }}}
-" fzf ctags {{{               
-nnoremap <C-p> :GFiles<CR>              
-inoremap <C-s> <C-o>:FZFTags<CR> 
-nnoremap <C-s> :FZFTags<CR>
-nnoremap <C-u> :History<CR>  
-autocmd VimEnter * silent execute "!/usr/local/bin/tags-git-hook.sh" | redraw!
-set tags=.git/tags
-" }}}
 
 function! GetGitRemoteUrl()
 	silent !clear
@@ -164,5 +160,5 @@ function! GetGitRemoteUrl()
 endfunction
 nnoremap YY :call GetGitRemoteUrl() <cr>
 " NERDTREE CONFIG {{{
-nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeToggle<CR>
 " }}}

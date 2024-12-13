@@ -35,6 +35,7 @@ font pango:Iosevka 9
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec /usr/bin/alacritty
+bindsym $mod+Shift+h exec /usr/bin/foot
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -151,7 +152,8 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9 bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+Shift+Plus move container to output right
 bindsym $mod+Shift+Minus move container to output left
@@ -283,7 +285,13 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'Yaru'
 }
 
-exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml
+# exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml
 exec_always --no-startup-id /usr/bin/kanshi
 
+assign [app_id="scrcpy"] 8
+for_window [app_id="scrcpy"] floating enable, resize set 427 490
+assign [app_id="org.mozilla.thunderbird"] 7
+assign [class="Twist"] 2
+
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+include @sysconfdir@/sway/config.d/*

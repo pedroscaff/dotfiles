@@ -1,8 +1,7 @@
-live_config_reload = true
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/bash"
-args = ["-c", "toolbox run /usr/bin/zsh"]
+args = ["-c", "toolbox run --container fedora-toolbox-40 /usr/bin/zsh"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -617,3 +616,8 @@ lines = 24
 [window.padding]
 x = 2
 y = 2
+
+[general]
+live_config_reload = true
+
+[terminal]
