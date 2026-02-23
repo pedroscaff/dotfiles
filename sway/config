@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 
 # start bemenu (a program launcher)
 #set $bemenu_path /home/pedroscaff/bin/bemenu-0.6.14
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec wmenu-run
 # bindsym $mod+d exec dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"}
 # start rofi
 bindsym Control+space exec rofi -show drun
