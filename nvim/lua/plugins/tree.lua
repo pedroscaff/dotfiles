@@ -6,6 +6,11 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {}
+    local config = {
+      update_focused_file = {
+        enable = true,
+      }
+    }
+    require("nvim-tree").setup(config)
   end,
 }
