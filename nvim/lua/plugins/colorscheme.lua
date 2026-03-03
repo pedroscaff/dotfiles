@@ -1,7 +1,7 @@
 return {
-  "smit4k/shale.nvim",
+  "ikelaiah/nebula-drift-omega",
   config = function()
     -- load the colorscheme here
-    vim.cmd([[colorscheme shale]])
+    vim.cmd([[colorscheme nebula-drift-omega]])
   end,
 }
