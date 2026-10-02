@@ -27,7 +27,6 @@ vim.api.nvim_create_autocmd({'LspAttach'}, {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'goto_definition' })
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'goto declaration' })
     vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, { desc = 'goto type definition' })
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'show references' })
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, { desc = 'show code actions' })
     vim.keymap.set('n', 'grr', vim.lsp.buf.rename, { desc = 'rename' })
 
