@@ -6,10 +6,11 @@ return {
     },
     build = "make tiktoken",
     opts = {
-      model = 'gpt-5.3-codex',           -- AI model to use
+      -- model = 'gpt-5.6-luna',           -- AI model to use
+      model = 'claude-opus-4.8',           -- AI model to use
       temperature = 0.1,           -- Lower = focused, higher = creative
       window = {
-        layout = 'float',       -- 'vertical', 'horizontal', 'float'
+        layout = 'vertical',       -- 'vertical', 'horizontal', 'float'
         width = 0.5,              -- 50% of screen width
       },
       auto_insert_mode = true,     -- Enter insert mode when opening
