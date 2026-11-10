@@ -245,12 +245,10 @@ bindsym $mod+Home mode "$mode_idle"
 # bindsym $mod+m mode "$mode_pimedia"
 
 set $asus4k "ASUSTek COMPUTER INC ASUS PA279CV R7LMTF005615"
-set $sonyOffice "Dell Inc. DELL U2415 7MT019732KHU"
 set $mode_monitors MonitorSetup (o) office, (h) home, (l) laptop
 mode "$mode_monitors" {
     # bindsym h output $asus4k res 3840x2160 pos 0 0 scale 2, output eDP-1 res 1920x1080 pos 3840 0, mode "default"
-    bindsym h output $asus4k res 3840x2160 pos 0 0 scale 2, output eDP-1 disable, mode "default"
-    bindsym o output $sonyOffice res 1920x1080 pos 0 0, output eDP-1 res 1920x1080 pos 0 1080, mode "default"
+    bindsym h output $asus4k res 3840x2160 pos 0 0 scale 2, output eDP-1 enable res 2880x1920 pos 1920 0 scale 1.5, mode "default"
     bindsym l output eDP-1 enable pos 0 0 res 1920x1080, mode "default"
     bindsym Escape mode "default"
 }
@@ -262,20 +260,12 @@ input type:keyboard {
   repeat_delay 400
 }
 
-# output eDP-1 {
-#   resolution 1920x1080 position 0,0
-# }
-
-output "Ancor Communications Inc ASUS VN247 F9LMTF078012" {
-  resolution 1920x1080 position 0,0
-}
-
-output "Dell Inc. DELL U2415 7MT019732KHU" {
-  resolution 1920x1080 position 0,0
+output eDP-1 {
+  resolution 2880x1920 position 2560,0 scale 1.5
 }
 
 output $asus4k {
-  resolution 3840x2160 position 0,0 scale 2
+  resolution 3840x2160 position 0,0 scale 1.5
 }
 
 set $gnome-schema org.gnome.desktop.interface
@@ -286,7 +276,7 @@ exec_always {
 }
 
 # exec_always --no-startup-id $HOME/dev/swaywsr/target/release/swaywsr --config $HOME/.config/sway/swaywsr.toml
-exec_always --no-startup-id /usr/bin/kanshi
+# exec_always --no-startup-id /usr/bin/kanshi
 
 assign [app_id="scrcpy"] 8
 for_window [app_id="scrcpy"] floating enable, resize set 427 490

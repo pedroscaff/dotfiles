@@ -135,7 +135,7 @@ alias l='exa'
 alias ll='exa -l --git -h -g'
 alias cdd='cd ~/dev'
 alias webcam='mpv --profile=webcam av://v4l2:/dev/video0'
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # fasd
 eval "$(fasd --init posix-alias zsh-hook)"
@@ -148,18 +148,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob || fd --type f || git ls-tree -r --name-only HEAD || find ."
 export EDITOR='vim'
 export PATH=$HOME/bin:$HOME/.cargo/bin:/snap/bin:$HOME/dev/i3-scripts:/usr/local/go/bin:$PATH
 export GOPATH='/home/djscuf/go'
 
 # asdf {{{
-. "$HOME/.asdf/asdf.sh"
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+# . "$HOME/.asdf/asdf.sh"
+# # append completions to fpath
+# fpath=(${ASDF_DIR}/completions $fpath)
+# # initialise completions with ZSH's compinit
+# autoload -Uz compinit && compinit
 # }}}
 
 # android setup {{{
